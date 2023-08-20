@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KathaKona</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="top-bar">
+        <div class="user-auth">
+          <a href="#" id="login-btn">Login</a>
+          <a href="#" id="signup-btn">Signup</a>
+        </div>
+      </div>
+      <h1>Katha - Kona</h1>
+    </header>
+
+    <main>
+      <section id="book-list" class="book-list">
+        <div><!-- Placeholder for book listings --></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 <br>KathaKona: Corner for Indian E-Books</p>
+    </footer>
+
+    <!-- Login Popup -->
+    <div id="login-popup" class="popup">
+      <div class="popup-content">
+        <span id="close-login-popup" class="close-popup">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+          <button type="submit" class="btn-login">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Signup Popup -->
+    <div id="signup-popup" class="popup">
+      <div class="popup-content">
+        <span id="close-signup-popup" class="close-popup">&times;</span>
+        <h2>Signup</h2>
+        <form id="signup-form">
+          <label for="new-username">Username:</label>
+          <input type="text" id="new-username" name="new-username" required />
+          <label for="new-password">Password:</label>
+          <input
+            type="password"
+            id="new-password"
+            name="new-password"
+            required
+          />
+          <label for="confirm-password">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            required
+          />
+          <button type="submit" class="btn-signup">Signup</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
