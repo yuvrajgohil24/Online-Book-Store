@@ -136,6 +136,17 @@ function displayBooks(books) {
     const bookDetails = document.createElement("div");
     bookDetails.classList.add("book-details");
 
+    // const btns = document.createElement("div")
+    const Add_btn = document.createElement("button");
+    Add_btn.innerHTML = "Add to Cart";
+    Add_btn.id = "add_btn"
+    
+    
+    const Buy_btn = document.createElement("button");
+    Buy_btn.innerHTML = "Buy Now";
+    Buy_btn.id = "buy_btn"
+    
+
     const title = document.createElement("h2");
     title.textContent = book.title;
 
@@ -148,6 +159,8 @@ function displayBooks(books) {
     bookDetails.appendChild(title);
     bookDetails.appendChild(author);
     bookDetails.appendChild(description);
+    bookDetails.appendChild(Add_btn);
+    bookDetails.appendChild(Buy_btn);
 
     bookItem.appendChild(bookImage);
     bookItem.appendChild(bookDetails);
