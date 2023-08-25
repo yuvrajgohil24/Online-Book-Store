@@ -1,42 +1,77 @@
+
+let cart = [];
+
 document.addEventListener("DOMContentLoaded", () => {
   fetchBooks();
 
-  const addBookBtn = document.getElementById("add-book-btn");
-  addBookBtn.addEventListener("click", addBook);
+  const loginPopup = document.getElementById("login-popup");
+  const signupPopup = document.getElementById("signup-popup");
 
-  const openPopup = (popup) => {
-    popup.style.display = "flex";
-  };
+  document.getElementById("login-btn").addEventListener("click", () => showPopup(loginPopup));
+  document.getElementById("signup-btn").addEventListener("click", () => showPopup(signupPopup));
 
-  const closePopup = (popup) => {
-    popup.style.display = "none";
-  };
+  const closeLoginPopup = document.getElementById("close-login-popup");
+  const closeSignupPopup = document.getElementById("close-signup-popup");
+  
+  closeLoginPopup.addEventListener("click", () => closePopup(loginPopup));
+  closeSignupPopup.addEventListener("click", () => closePopup(signupPopup));
 
-  const setupPopup = (openBtn, closeBtn, popup) => {
-    openBtn.addEventListener("click", () => {
-      openPopup(popup);
-    });
+  const bookList = document.getElementById("book-list");
+  bookList.addEventListener("click", (event) => {
+    const target = event.target;
+    if (target.classList.contains("btn-add-to-cart")) {
+      const bookTitle = target.closest(".book-item").querySelector("h2").textContent;
+      addToCart(bookTitle);
+    } else if (target.classList.contains("btn-buy-now")) {
+      const bookTitle = target.closest(".book-item").querySelector("h2").textContent;
+      buyNow(bookTitle);
+    }
+  });
 
-    closeBtn.addEventListener("click", () => {
-      closePopup(popup);
-    });
-  };
+  const cartButton = document.querySelector(".btn-cart");
+  cartButton.addEventListener("click", () => {
+    viewCart();
+  });
 
-  setupPopup(
-    document.getElementById("login-btn"),
-    document.getElementById("close-login-popup"),
-    document.getElementById("login-popup")
-  );
-
-  setupPopup(
-    document.getElementById("signup-btn"),
-    document.getElementById("close-signup-popup"),
-    document.getElementById("signup-popup")
-  );
+  const buyNowFooterButton = document.querySelector(".btn-buy-now-footer");
+  buyNowFooterButton.addEventListener("click", () => {
+    proceedToCheckout();
+    clearCart();
+  });
 });
 
+function addToCart(bookTitle) {
+  cart.push(bookTitle);
+  console.log(`Added "${bookTitle}" to the cart.`);
+}
+
+function buyNow(bookTitle) {
+  console.log(`Buying "${bookTitle}" now.`);
+}
+
+function viewCart() {
+  console.log("Viewing Cart:", cart);
+}
+
+function proceedToCheckout() {
+  console.log("Proceeding to Checkout.");
+}
+
+function clearCart() {
+  cart = [];
+  console.log("Cart cleared.");
+}
+
+function showPopup(popup) {
+  popup.style.display = "flex";
+}
+
+function closePopup(popup) {
+  popup.style.display = "none";
+}
+
 function fetchBooks() {
-  // Simulating fetching books from the server with a delay
+  // Simulate fetching books from the server with a delay
   setTimeout(() => {
     const books = [
       {
@@ -82,7 +117,7 @@ function fetchBooks() {
     ];
 
     displayBooks(books);
-  }, 1000); // Simulate a delay of 1 second (1000 milliseconds)
+  }, 1000);
 }
 
 function displayBooks(books) {
@@ -118,30 +153,5 @@ function displayBooks(books) {
     bookItem.appendChild(bookDetails);
 
     bookList.appendChild(bookItem);
-  });
-}
-
-function addBook() {
-  const addBookForm = document.getElementById("add-book-form");
-
-  addBookForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const title = document.getElementById("new-title").value;
-    const author = document.getElementById("new-author").value;
-    const description = document.getElementById("new-description").value;
-
-    const newBook = {
-      title: title,
-      author: author,
-      description: description,
-    };
-
-    // Simulate sending data to the server (replace with actual server interaction)
-    // For demonstration, we will just log the new book details
-    console.log("New Book Details:", newBook);
-
-    // Clear the form fields
-    addBookForm.reset();
   });
 }
